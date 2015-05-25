@@ -1,0 +1,40 @@
+<div id="navbar">
+    <a ui-sref="home"><img id="logo" src="./images/magog.jpg" alt="logo"></a>
+    <h2 class="ng-cloak inline">{{sub}}</h2>
+    <a ui-sref="diag({id:sub})"><em>diagram</em></a> <a ui-sref="map({id:sub})"><em>map</em></a>
+    <a ui-sref="chart({id:sub})"><em>chart</em></a> <a ui-sref="list({id:sub})"><em>list</em></a>
+</div>
+<div ng-show='ajaxLoading'>
+    <h3>Loading...</h3>
+    <chasing-dots-spinner></chasing-dots-spinner>
+</div>
+<div id="table">
+    <table class="tabPDC">
+        <tr class="ng-cloak">
+            <th><a href="#" ng-click="myOrder='id'; ud = !ud">ID</a></th>
+            <th><a href="#" ng-click="myOrder='type'; ud = !ud">Type</a></th>
+            <th>Phase</th>
+            <th>FPL ID</th>
+            <th>FPL Class</th>
+            <th>Asset Type</th>
+            <th>Nodes</th>
+            <th>Points</th>
+            <th><a href="#" ng-click="myOrder='level'; ud = !ud">Level</a></th>
+            <th>Span</th>
+            <th>Path</th>
+        </tr>
+        <tr ng-repeat="row in rows | orderBy: myOrder: ud" class="ng-cloak">
+            <td>{{row.id}}</td>
+            <td>{{row.type}}</td>
+            <td>{{row.phase}}</td>
+            <td>{{row.fplID}}</td>
+            <td>{{row.fplClass}}</td>
+            <td>{{row.assetType | limitTo: 12}}</td>
+            <td>{{row.nodes}}</td>
+            <td>{{row.points}}</td>
+            <td>{{row.level}}</td>
+            <td>{{row.forward}}</td>
+            <td>{{row.pathBack}}</td>
+        </tr>
+    </table>
+</div>

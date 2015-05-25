@@ -1,0 +1,29 @@
+<table class="table faulttable">
+  <tr>
+    <td><h3>Details for {{fault._id}}</h3></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Substation</td>
+    <td>{{fault.substation}}</td>
+  </tr>
+  <tr>
+    <td>Feeder</td>
+    <td>{{fault.feeder}}</td>
+  </tr>
+  <tr>
+    <td>Type</td>
+    <td>{{fault.type}}</td>
+  </tr>
+  <tr>
+    <td>Date</td>
+    <td>{{fault.date}}</td>
+  </tr>
+  <tr>
+    <td>Time</td>
+    <td>{{fault.time}}</td>
+  </tr>    
+</table>
+<div>
+  <a class="btn btn-primary" ui-sref="editFault({id:fault._id})">Edit</a>
+</div>

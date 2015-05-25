@@ -1,0 +1,11 @@
+<div id="navbar">
+    <a ui-sref="home"><img id="logo" src="./images/magog.jpg" alt="logo"></a>
+    <h2 class="ng-cloak inline">{{sub}}</h2>
+    <a ui-sref="diag({id:sub})"><em>diagram</em></a> <a ui-sref="map({id:sub})"><em>map</em></a>
+    <a ui-sref="chart({id:sub})"><em>chart</em></a> <a ui-sref="list({id:sub})"><em>list</em></a>
+</div>
+<div ng-show='ajaxLoading'>
+    <h3>Loading...</h3>
+    <chasing-dots-spinner></chasing-dots-spinner>
+</div>
+    <div width="1024" height="768" id="leaflet"></div>

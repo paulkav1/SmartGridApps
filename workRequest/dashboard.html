@@ -1,0 +1,56 @@
+<html lang="en" ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">        
+<title>Manage Work</title> 
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-animate.min.js"></script>
+<script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+<link rel="stylesheet" href="../css/main.css"/>
+<script type="text/javascript"  src="work.js"></script>
+</head>
+<body>
+<div class="container" ng-controller="hvtCtrl"> 
+<h2>Manage Work</h2>
+<tabset>
+<tab heading="High Voltage Transformers"> 
+    <div id="table">
+        <table class="tabPDC"> 
+            <tr>
+                <th>MA</th>
+                <th>Substation</th>
+                <th>Feeder</th>
+                <th>DDB</th>
+                <th>Readings</th>
+                <th>Date</th>
+                <th>Days Since</th>
+                <th># Cus</th>
+                <th>Work Request</th>                                              
+            </tr>
+            <tr ng-repeat="item in items | orderBy: 'insertDate'" ng-class="{red: item.red}">           
+                <td>{{item.managementArea}}</td>
+                <td>{{item.Substation}}</td>
+                <td>{{item.Feeder}}</td>
+                <td>{{item.ddb}}</td>
+                <td>{{item.minReading}} : {{item.maxReading}}</td>
+                <td>{{item.insertDate | date}}</td>
+                <td>{{item.days}}</td>          
+                <td>{{item.premises.length}}</td>
+                <td ng-if="!item.wr"><button class="btn btn-danger">Submit</td>
+				<td ng-if="item.wr"><button popover="{{item.comments}}" popover-trigger="mouseenter" class="btn btn-info">{{item.wr}}</button</td>
+            </tr>
+        </table>
+    </div>
+</tab>
+<tab heading="FCIs in Alarm State">
+placeholder for FCI data
+</tab>
+</tabset>	
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<div class="ng-cloak">
+    <a ui-sref="home"><img id="logo" src="./images/magog.jpg" alt="logo"></a>
+    <h2 class="ng-cloak inline">{{sub}}</h2>
+    <a ui-sref="diag({id:sub})"><em>diagram</em></a> <a ui-sref="map({id:sub})"><em>map</em></a>
+    <a ui-sref="chart({id:sub})"><em>chart</em></a> <a ui-sref="list({id:sub})"><em>list</em></a>
+    <div><strong>Filter:</strong>
+        Phases
+        <label> A:<input type="checkbox" ng-model="phases['A']"></label>
+        <label> B:<input type="checkbox" ng-model="phases['B']"></label>
+        <label> C:<input type="checkbox" ng-model="phases['C']"></label>
+        Feeders <ul id="feeders" ng-repeat="feeder in feeders">
+        <li><label> {{feeder.f}}:<input type="checkbox" ng-model="feeder.state"></label></li>
+        </ul>
+        <button class="btn btn-info" ng-click="reDraw()">Redraw</button>
+    </div>
+</div>
+<div ng-show='ajaxLoading'>
+    <h3>Loading...</h3>
+    <chasing-dots-spinner></chasing-dots-spinner>
+</div>
+<div id="sel" class="ng-cloak">
+    <ul>
+        <li>{{lcRow.id}} {{lcRow.phases}}</li>
+        <li>{{lcRow.type}}</li>
+        <li>{{lcRow.fplClass}} {{lcRow.assetType}}</li>
+        <li>-----@{{cX}},{{cY}}-------</li>
+    </ul>
+    <ul ng-repeat="p in lcRow.pathBack">
+        <li ng-if="p.charAt(0) !== 'A'">{{p}}</li>
+    </ul>
+</div>
+<div ng-click="doClick($event)" ng-right-click="doRightClick($event)" popover-trigger="click"
+     popover="{{rcRow.id}} {{rcRow.phases}} {{rcRow.type}}:{{rcRow.fplClass}} {{rcRow.assetType}} @{{cX}},{{cY}}" >
+    <canvas width="1024" height="768" id="myCanvas">HTML5 canvas not available!</canvas>
+</div>
