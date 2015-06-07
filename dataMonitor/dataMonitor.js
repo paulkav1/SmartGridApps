@@ -2,7 +2,7 @@ var app = angular.module('myApp', []);
 
 app.controller('serviceCtrl', function($scope, $http){
     $scope.ajaxLoaded = false;
-    $http.get("http://localhost:8080/api/datamon")
+    $http.get("http://smartgridtools-pakra.rhcloud.com/api/datamon")
         .success(function(data, status, headers, config) {
             $scope.rows = data;
             $scope.ajaxLoaded = true;

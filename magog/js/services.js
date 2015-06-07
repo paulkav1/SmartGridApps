@@ -9,7 +9,7 @@ app.service('DataModel', function($http, $q) {
         if (id === cacheId)
             return $q.when(cache);
         else{
-            var httpStr = "http://" + window.location.hostname + ":8080/api/magog/" + id;
+            var httpStr = "http://smartgridtools-pakra.rhcloud.com/api/magog/" + id;
             return $http.get(httpStr).then(
                 function (response) {
                     cache = response.data;

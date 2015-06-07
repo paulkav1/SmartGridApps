@@ -1,7 +1,7 @@
 var app = angular.module('fciApp', ['ui.bootstrap', 'ngSanitize', 'ngCsv']);
 
 app.controller('indexCtrl', ['$scope', '$http', function($scope, $http){
-    $http.get("http://localhost:8080/api/fci")
+    $http.get("http://smartgridtools-pakra.rhcloud.com/api/fci")
         .success(function(data, status, headers, config) {
             console.log(data);
             var summary = data;

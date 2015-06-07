@@ -2,7 +2,7 @@ var app = angular.module('myApp', ['ui.bootstrap']);
 
 app.controller('hvtCtrl', function($scope, $http){
 	$scope.ajaxLoaded = false;
-	$http.get("http://localhost:8080/api/hvt")
+	$http.get("http://smartgridtools-pakra.rhcloud.com/api/hvt")
 	.success(function(data, status, headers, config) {
     	$scope.items = data.hvmodel;
             console.log($scope.items);
