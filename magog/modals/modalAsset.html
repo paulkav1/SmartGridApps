@@ -1,0 +1,48 @@
+<div class="modal-header"></div>
+<div class="modal-body">
+    <tabset>
+        <tab heading="This asset">
+            <h3>{{rcRow.id}}</h3>
+            <ul class="mod">
+                <li>{{rcRow.phase}}</li>
+                <li>{{rcRow.type}}:{{rcRow.fplClass}}</li>
+                <li>{{rcRow.assetType}}</li>
+                <li>{{rcRow.fplId}}</li>
+                <li>{{rcRow.level}}</li>
+                </ul>
+            </ul>
+        </tab>
+        <tab heading="Debug">
+            <ul class="mod">
+                <li>cursor {{cX | number:0}},{{cY | number:0}}</li>
+                <li>box at {{box.x | number:0}},{{box.y | number:0}}</li>
+                <li>square is {{box.left | number:0}},{{box.right | number:0}},{{box.top | number:0}},{{box.bottom | number:0}}</li>
+                <li>hit is {{hit}}</li>
+            </ul>
+            </ul>
+        </tab>
+        <tab heading="Path Back">
+            <ul ng-repeat="p in rcRow.pathBack" class="mod">
+                <li ng-if="p.charAt(0) !== 'A'">{{p}}</li>
+            </ul>
+        </tab>
+        <tab heading="Path Forward">
+            <ul ng-repeat="p in lastPathF" class="mod">
+                <li ng-if="p.charAt(0) !== 'A'">{{p}}</li>
+            </ul>
+        </tab>
+        <tab heading="Event Data">Static content</tab>
+        <tab heading="Chart Data">Static content</tab>
+        <tab heading="Notes">
+            <p>Select comment</p>
+            <select id="s1" ng-model="selectedItem" ng-options="item as item.name for item in items"></select>
+            <h4>The selected item:</h4>
+            <pre>{{selectedItem | json}}</pre>
+        </tab>
+        <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">{{tab.content}}</tab>
+    </tabset>
+    </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="ok()">OK</button>
+    <button type="button" class="btn btn-warning" ng-click="close()">Cancel</button>
+</div>

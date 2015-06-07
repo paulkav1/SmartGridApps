@@ -31,3 +31,10 @@
         </li>
     </ul>
 </div>
+
+<div>
+    <h3>Select an <em>action</em> on a substation</h3>
+    <ul>
+    <li ng-repeat="sub in subs"><a ui-sref="diag({ id: sub.sub })">{{sub.sub}}</a></li>
+    </ul>
+</div>

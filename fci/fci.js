@@ -1,7 +1,14 @@
+var APIHOME;
+if (window.location.hostname === 'localhost')
+    APIHOME = "http://localhost:8080/api/";
+else
+    APIHOME = "http://smartgridtools-pakra.rhcloud.com/api/";
+
+
 var app = angular.module('fciApp', ['ui.bootstrap', 'ngSanitize', 'ngCsv']);
 
 app.controller('indexCtrl', ['$scope', '$http', function($scope, $http){
-    $http.get("http://smartgridtools-pakra.rhcloud.com/api/fci")
+    $http.get(APIHOME + "fci")
         .success(function(data, status, headers, config) {
             console.log(data);
             var summary = data;

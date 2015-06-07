@@ -1,8 +1,12 @@
-var app = angular.module('myApp', ['ui.bootstrap']);
+var APIHOME;
+if (window.location.hostname === 'localhost')
+    APIHOME = "http://localhost:8080/api/";
+else
+    APIHOME = "http://smartgridtools-pakra.rhcloud.com/api/";
 
-app.controller('hvtCtrl', function($scope, $http){
+var app = angular.module('myApp', ['ui.bootstrap']).controller('hvtCtrl', function($scope, $http){
 	$scope.ajaxLoaded = false;
-	$http.get("http://smartgridtools-pakra.rhcloud.com/api/hvt")
+	$http.get(APIHOME + "hvt")
 	.success(function(data, status, headers, config) {
     	$scope.items = data.hvmodel;
             console.log($scope.items);

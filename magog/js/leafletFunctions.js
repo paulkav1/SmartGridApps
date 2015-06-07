@@ -33,7 +33,7 @@ function setupLeaflet($scope){
         render: function() {
             var canvas = this.getCanvas();
             $scope.ctx = canvas.getContext('2d');
-            drawNetwork($scope);
+            drawNetwork($scope, 1024, 768);
         }
     });
     var grid = new gridLayer().addTo(map);

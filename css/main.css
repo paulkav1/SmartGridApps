@@ -56,7 +56,7 @@ td{
 }
 .container{
 	vertical-align:middle;
-	width:90%;
+	width:96%;
 	margin: 2px auto;
 }
 .centered{
@@ -100,7 +100,9 @@ td{
 	border-color: #666666;
 	background-color: #ffffff;
 	word-wrap: break-word;
-	max-width: 180px;
+}
+.mdm td{
+    max-width:240px;
 }
 .lab{
 	display:inline-block;
@@ -146,13 +148,6 @@ body {
     margin-top:10px;
 }
 
-.faulttable tr td:nth-child(2){
-    width: 150px;
-}
-
-.faulttable tr:nth-child(1) td{
-    border-top: none;
-}
 a.nodecoration{
     text-decoration:none;
 }

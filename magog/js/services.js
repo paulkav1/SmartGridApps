@@ -4,12 +4,18 @@ app.service('DataModel', function($http, $q) {
     var model = this;
     var cache;
     var cacheId;
+    var APIHOME;
+    if (window.location.hostname === 'localhost')
+        APIHOME = "http://localhost:8080/api/";
+    else
+        APIHOME = "http://smartgridtools-pakra.rhcloud.com/api/";
+
 
     model.getData = function(id) {
         if (id === cacheId)
             return $q.when(cache);
         else{
-            var httpStr = "http://smartgridtools-pakra.rhcloud.com/api/magog/" + id;
+            var httpStr = APIHOME + "magog/" + id;
             return $http.get(httpStr).then(
                 function (response) {
                     cache = response.data;

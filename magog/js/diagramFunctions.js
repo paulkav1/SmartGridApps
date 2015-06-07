@@ -14,6 +14,7 @@ function setFilters($scope) {
     $scope.phases["A"] = true;
     $scope.phases["B"] = true;
     $scope.phases["C"] = true;
+    //$scope.phases["N"] = true;
 
     $scope.feeders = [];
     for (i = 0; i < $scope.rows.length; i++){
@@ -24,15 +25,10 @@ function setFilters($scope) {
     }
 }
 
-function drawNetwork($scope){
-    var x1 = 1024;
-    var y1 = 768;
-    var x2 = $scope.east - $scope.west;
-    var y2 = $scope.north - $scope.south;
-    $scope.xFactor = x1/x2;
-    $scope.yFactor = y1/y2;
-    $scope.icons = [];
+function drawNetwork($scope, xSize, ySize){
+    figureScale($scope, xSize, ySize);
 
+    $scope.icons = [];
     for (var i = 0; i < $scope.rows.length; i++){
         if (matchOnFeeder($scope, i) && matchOnPhase($scope, i)){
             if ($scope.rows[i].type === "ACLineSegment")
@@ -41,6 +37,14 @@ function drawNetwork($scope){
                 drawNode($scope.ctx, $scope.rows[i], $scope, true);
         }
     }
+}
+
+// determine the scale from the viewport size and the bounding box
+function figureScale($scope, x1, y1){
+    var x2 = $scope.east - $scope.west;
+    var y2 = $scope.north - $scope.south;
+    $scope.xFactor = x1/x2;
+    $scope.yFactor = y1/y2;
 }
 
 function matchOnPhase($scope, i){
@@ -65,8 +69,8 @@ function getCursorPos(e){
     var posx, posy;
 
     if (e.pageX || e.pageY){
-        posx = e.pageX - 10;
-        posy = e.pageY - 90;
+        posx = e.pageX;
+        posy = e.pageY - 110;
     }
     else if (e.clientX || e.clientY){
         posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
@@ -84,85 +88,111 @@ function findIcon($scope, posx, posy){
         var box = $scope.icons[i];
         // if we click inside a box it's a hit
         if (posx <= box.right && posx >= box.left && posy >= box.top && posy <= box.bottom) {
+            $scope.box = box;
+            $scope.hit = "exact";
             return findRow(box.id, $scope);
         }
         else{    // closest miss will do
             sos = ((posx - box.x) * (posx - box.x)) + ((posy - box.y) * (posy - box.y));
             if (sos < closest){
                 closest = sos;
-                closestId = box.id
+                closeBox = box;
             }
         }
     }
-    return findRow(closestId, $scope);
-}
-
-function findRow(id, $scope){
-    for (i = 0; i < $scope.rows.length; i++)
-        if ($scope.rows[i].id === id)
-            return $scope.rows[i];
-
-    alert('id lookup failed: ' + id);
-    return null;
+    $scope.box = closeBox;
+    $scope.hit = "close";
+    return findRow(closeBox.id, $scope);
 }
 
 function drawBackPath($scope){
 // for each item in the path list back to the feeder, draw it highlighted
 // if there is a previous highlighted path redraw it first
     var path;
-    if ($scope.lastPath){
+    if ($scope.lastPath) {
         path = $scope.lastPath;
-        for (var i = path.length; i > 0; i--){
+        for (var i = path.length; i > 0; i--) {
             var row = findRow(path[i], $scope);
-            if (row.type === "ACLineSegment")
-                drawLine($scope.ctx, row, $scope);
-            else
-                drawNode($scope.ctx, row, $scope, false);
+            if (row)
+                if (row.type === "ACLineSegment")
+                    drawLine($scope.ctx, row, $scope);
+                else
+                    drawNode($scope.ctx, row, $scope, false);
         }
     }
-
     path = $scope.lcRow.pathBack;
     $scope.lastPath = path;
+    var red = 'rgb(255,0,0)';
     for (var i = path.length; i > 0; i--){
         var row = findRow(path[i], $scope);
-        if (row.type === "ACLineSegment")
-            drawLineHighlighted($scope.ctx, row, $scope);
-        else
-            drawNodeHighlighted($scope.ctx, row, $scope);
+        if (row)
+            if (row.type === "ACLineSegment")
+                drawLineColored($scope.ctx, row, $scope, red);
+            else
+                drawNodeColored($scope.ctx, row, $scope, red);
     }
 };
 
 function drawForwardPath($scope){
-// forward path needs to be calculated one at a time recursively
-// will need to get rid of last one
-
+// forward path is all the assets that have us in their path
+// first we need to get rid of the last one we drew by drawing over it
+    if ($scope.lastPathF){
+        for (var i = 0; i < $scope.lastPathF.length; i++){
+            var row = findRow($scope.lastPathF[i], $scope);
+            if (row)
+                if (row.type === "ACLineSegment")
+                    drawLine($scope.ctx, row, $scope);
+                else
+                    drawNode($scope.ctx, row, $scope, false);
+        }
+    }
+    $scope.lastPathF = [];
+    var orange = 'rgb(255,165,0)';
+    for (i = 0; i < $scope.rows.length; i++){
+        var row = $scope.rows[i];
+        for (var j = 0; j < row.pathBack.length; j++){
+            if (row.pathBack[j] === $scope.lcRow.id){
+                $scope.lastPathF.push(row.id);
+                if (row.type === "ACLineSegment")
+                    drawLineColored($scope.ctx, row, $scope, orange);
+                else
+                    drawNodeColored($scope.ctx, row, $scope, orange);
+            }
+        }
+    }
 };
 
-function drawNodeHighlighted(ctx, asset, $scope){
-    var red = 'rgb(250,0,0)'
+function findRow(id, $scope){
+    for (i = 0; i < $scope.rows.length; i++)
+        if ($scope.rows[i].id === id)
+            return $scope.rows[i];
+
+    return null;
+}
+
+function drawNodeColored(ctx, asset, $scope, color){
     try{
         var points = setPoint(asset.points[0][0], asset.points[0][1], $scope);
     }catch(e){
         return;
     }
     if (asset.type === 'Feeder')
-        drawAsset(ctx, 20, red, points);
+        drawAsset(ctx, 20, color, points);
     else if (asset.type === 'Switch - Open' || asset.type === 'Switch - Closed')
-        drawAsset(ctx, 8, red, points);
+        drawAsset(ctx, 8, color, points);
     else if (asset.type === 'TransformerWinding')
-        drawAsset(ctx, 7, red, points);
+        drawAsset(ctx, 7, color, points);
     else if (asset.type === 'Fuse')
-        drawAsset(ctx, 7, red, points);
+        drawAsset(ctx, 7, color, points);
     else
-        drawAsset(ctx, 7, red, points);
+        drawAsset(ctx, 7, color, points);
 };
 
-function drawLineHighlighted(ctx, asset, $scope){
-    drawSegs(ctx, asset, $scope, 2, 'rgb(250,0,0)');
+function drawLineColored(ctx, asset, $scope, color){
+    drawSegs(ctx, asset, $scope, 2, color);
 };
 
 function drawNode(ctx, asset, $scope, makeIconArray){
-    var size;
     try{
         var points = setPoint(asset.points[0][0], asset.points[0][1], $scope);
     }catch(e){
@@ -183,10 +213,10 @@ function drawNode(ctx, asset, $scope, makeIconArray){
 
     if (makeIconArray){
         var icon = {
-            left: points[0] - (size / 2),
-            right: points[0] + (size / 2),
-            top: points[1] - (size / 2),
-            bottom: points[1] + (size / 2),
+            left: points[0] - 5,
+            right: points[0] + 5,
+            top: points[1] - 5,
+            bottom: points[1] + 5,
             x: points[0],
             y: points[1],
             id: asset.id

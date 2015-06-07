@@ -1,15 +1,16 @@
-<a ui-sref="newFault" class="btn-primary btn-lg nodecoration">Add New Fault</a>
- 
-<table class="table faulttable">
+
+<table class="tabpdc">
   <tr>
-    <td><h3>All Faults</h3></td>
-    <td></td>
+    <th><h3>Faults List</h3></th>
+    <th><h3>Actions</h3></th>
   </tr>
   <tr ng-repeat="fault in faults | orderBy:'name'">
     <td>{{fault.substation}} {{fault.feeder}} {{fault.type}} {{fault.date}} {{fault.time}}</td>
     <td>
       <a class="btn btn-primary" ui-sref="viewFault({id:fault._id})">View</a>
+      <a class="btn btn-primary" ui-sref="editFault({id:fault._id})">Edit</a>
       <a class="btn btn-danger"  ng-click="deleteFault(fault)">Delete</a>
     </td>
   </tr>
 </table>
+    <a ui-sref="newFault" class="btn-primary btn-lg nodecoration">Add New Fault</a>
