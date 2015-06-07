@@ -1,11 +1,9 @@
 var app = angular.module('myApp', []);
 
 app.controller('serviceCtrl', function($scope, $http){
-    $scope.ajaxLoaded = false;
     $http.get("http://smartgridtools-pakra.rhcloud.com/api/datamon")
         .success(function(data, status, headers, config) {
             $scope.rows = data;
-            $scope.ajaxLoaded = true;
             for (var i = 0; i < $scope.rows.length; i++){
                 if ($scope.rows[i].message.toLowerCase() === "ok")
                     $scope.rows[i].message = null;
@@ -14,8 +12,8 @@ app.controller('serviceCtrl', function($scope, $http){
             }
         })
         .error(function(data, status, headers, config) {
-            alert('fail');
-            $scope.ajaxLoaded = false;
+            alert('fail ' + status);
+            $scope.error = headers + status;
         });
 
     $scope.myOrder = 'id';
