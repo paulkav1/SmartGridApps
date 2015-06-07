@@ -103,10 +103,12 @@ app.controller('listCtrl', function($scope, DataModel, $stateParams){
 });
 
 app.controller('homeCtrl', function($scope, $http){
-    return $http.get("http://" + window.location.hostname + ":3000/magog").success(function (data, status, headers, config) {
-        $scope.subs = data;
-        }).error(function (data, status, headers, config) {
-        throw err;
+    return $http.get("http://" + window.location.hostname + ":3000/magog")
+        .success(function (data, status, headers, config) {
+            $scope.subs = data;
+        })
+        .error(function (data, status, headers, config) {
+            console.log('failed getting data');
     });
 });
 

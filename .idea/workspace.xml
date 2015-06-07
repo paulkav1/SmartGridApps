@@ -3,21 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="80e9e876-5364-4d69-a0da-c09f3d9ac50c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/js/controllers.js" afterPath="$PROJECT_DIR$/magog/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataMonitor/dataMonitor.html" afterPath="$PROJECT_DIR$/dataMonitor/dataMonitor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataMonitor/dataMonitor.js" afterPath="$PROJECT_DIR$/dataMonitor/dataMonitor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/partials/diag.html" afterPath="$PROJECT_DIR$/magog/partials/diag.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/js/diagramFunctions.js" afterPath="$PROJECT_DIR$/magog/js/diagramFunctions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fault/partials/fault-view.html" afterPath="$PROJECT_DIR$/fault/partials/fault-view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fault/partials/faults.html" afterPath="$PROJECT_DIR$/fault/partials/faults.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fci/fci.js" afterPath="$PROJECT_DIR$/fci/fci.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/partials/home.html" afterPath="$PROJECT_DIR$/magog/partials/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fault/index.html" afterPath="$PROJECT_DIR$/fault/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/js/leafletFunctions.js" afterPath="$PROJECT_DIR$/magog/js/leafletFunctions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/partials/list.html" afterPath="$PROJECT_DIR$/magog/partials/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fault/services.js" afterPath="$PROJECT_DIR$/fault/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/magog/js/services.js" afterPath="$PROJECT_DIR$/magog/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workRequest/work.js" afterPath="$PROJECT_DIR$/workRequest/work.js" />
     </list>
     <ignored path="geo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,8 +46,8 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/magog/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7014115">
-              <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
+            <state vertical-scroll-proportion="1.4212812">
+              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -579,8 +564,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/magog/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7014115">
-          <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
+        <state vertical-scroll-proportion="1.4212812">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
