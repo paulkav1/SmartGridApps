@@ -11,8 +11,7 @@ body {
 	font-family:sans-serif
 }
 h1,h2,h3{
-	text-align:center;	
-	color: maroon;
+	text-align:center;
 }
 td{
 	font: 12px Arial, sans-serif;
@@ -57,17 +56,27 @@ td{
 }
 .container{
 	vertical-align:middle;
-	width:80%;
-	margin: 2 auto;
+	width:90%;
+	margin: 2px auto;
 }
 .centered{
 	margin: 0 auto;
 }
-h1,h2,h3{
-	color: maroon;
-}
 .red{
 	color: red;
+}
+.footer {
+	width: 100%;
+	float: left;
+	font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #333333;
+	list-style-type: none;
+}
+.footer li{
+	display: inline-block;
+	padding: 4px;
+	word-wrap: break-word;
 }
 .tabpdc{
 	font-family: verdana,arial,sans-serif;
@@ -169,7 +178,7 @@ a.nodecoration{
     margin: 10px 20px;
 }
 .postcard{
-    width: 100%;
+	height: 250px;
 }
 .card{
     display:inline-block;

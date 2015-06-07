@@ -2,9 +2,8 @@ var app = angular.module('myApp', []);
 
 app.controller('serviceCtrl', function($scope, $http){
     $scope.ajaxLoaded = false;
-    $http.get("http://localhost:8080/dataMonitor/list")
+    $http.get("http://localhost:8080/api/datamon")
         .success(function(data, status, headers, config) {
-            console.log(data);
             $scope.rows = data;
             $scope.ajaxLoaded = true;
             for (var i = 0; i < $scope.rows.length; i++){

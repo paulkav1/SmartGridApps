@@ -5,22 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manage Faults</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
   </head>
   <body>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" ui-sref="faults">Faults List</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a ui-sref="faults">Home</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <div>
+    <a href="/#/"><img class="logo" src="../images/newage_energy.jpg" alt="logo"></a>
+    <h2 id="head">Smart Grid Tools</h2>
+  </div>
     <div class="container">
       <div class="row top-buffer">
         <div class="col-xs-8 col-xs-offset-2">
@@ -28,11 +20,12 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="../js/angular.js"></script>
+    <script type="text/javascript" src="../lib/angular.js"></script>
+    <script type="text/javascript" src="../lib/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../lib/angular-resource.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="controllers.js"></script>
     <script type="text/javascript" src="services.js"></script>
-    <script type="text/javascript" src="../js/angular-ui-router.js"></script>
-    <script type="text/javascript" src="../js/angular-resource.js"></script>
+
   </body>
 </html>

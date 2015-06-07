@@ -1,39 +1,47 @@
 <a ui-sref="home"><img id="logo" src="./images/magog.jpg" alt="logo"></a>
-<h2 class="ng-cloak inline">About Magog</h2>
-<a ui-sref="about"><em>About</em></a>
-<p></p>
-<h3>Grid Visualization Tool</h3>
-<p>This tool set is a representative part of a larger group of tools that allows users to request, manage, and comprehend extracts from the several databases of smart grid data. In particular we are monitoring these devices which represent a hierarchy from the top of the distribution grid (feeder) to the bottom (premises):</p>
-<ul>
-    <li>Breaker</li>
-    <li>Automated Feeder Switch (AFS)</li>
-    <li>Automated Lateral Switch (ALS or Trip saver)</li>
-    <li>FCI (Fault Current Indicator)</li>
-    <li>Smart Meter.</li>
-</ul>
-<h3>Feature Set</h3>
-<p>Features include:</p>
-<ul>
-    <li>Report Faults</li>
-    <li>Monitor Data Movement</li>
-    <li>Manage Field Work</li>
-    <li>Visualize the Network</li>
-</ul>
-<h3>Technical Notes</h3>
-<p>All code is written for this project. The back end is written in Groovy, everything else is JavaScript. All front-end code uses Angular.
-<h4>Web Server/Frameworks</h4>
- <p>The system is using four web servers and shows direct front ends and a REST API:</p>
-<ul>
-    <li>NodeJS/http-server for static files (menu, fault and visualization front-ends)</li>
-    <li>Grails for SQL resources (monitor data movement, manage field work)</li>
-    <li>NodeJS/Express for network visualization</li>
-    <li>NodeJS/Express/Mongoose for fault reporting (REST API)</li>
-</ul>
-<p>This all runs in Windows locally (Node and MongoDB are on Red Hat Linux in the production environment).
-<h4>Databases</h4>
-<p>The data is stored in sevaral databases; Postgres (meter and light events), Oracle (assets and work), SQL Server (aggregated summaries), eDNA (real time data), and MongoDB (topology). </p>
-    <p>The eDNA proprietary data series manager contains time series data on a half million points on the electrical grid – feeders, automated switches, voltage and current measures, and other related data, even weather. eDNA is real-time but the information needs to be combined with other sources to make sense.
-<p>I have replicated parts of the SQL Server and MongoDB databases so I can develop locally. These components don't access Oracle or Postgres in real-time. I will mock the EDNA system if I need to since that can not be replicated. The Work Management System and AMI Data Warehouse are represented by replicated data.
-<h4>Angular Forms and Directives</h4>
-<p>Used Angular form validation, Angular ui.router, and Angular ui.bootstrap components. Custom directive for D3 and right-click.
-</p>
+<div class="container">
+    <h2>About These Apps</h2>
+    </br>
+    <p>This tool set is a representative part of a larger group of tools that allows users to request, manage, and comprehend extracts from the several databases of smart grid data.
+    In particular we are monitoring these devices which represent a hierarchy from the top of the distribution grid (feeder) to the bottom (premises):</p>
+    <ul>
+        <li>Breaker</li>
+        <li>Automated Feeder Switch (AFS)</li>
+        <li>Automated Lateral Switch (ALS or Trip saver)</li>
+        <li>Fault Current Indicator</li>
+        <li>Smart Meter</li>
+    </ul>
+    <h3>Feature Set</h3>
+    <dl>
+        <dt>Visualize Substation:</dt>
+        <dd>Diagram of the network, which can be overlaid on a street map or viewed as a chart or list. On the diagram, you can left or right click to see network connectivity or asset details.</dd>
+        <dt>Report Faults:</dt>
+        <dd>Report faults from breakers, AFS switches, tripsavers, and FCIs</dd>
+        <dt>Fault Current Indicators:</dt>
+        <dd>Dashboard showing data quality and field work needed on installed FCI</dd>
+        <dt>High Voltage Transformers:</dt>
+        <dd>Report transformers that are shorting out, based on those showing high voltage at downstream meters</dd>
+        <dt>Monitor Data Movement:</dt>
+        <dd>Manage the data flow from transmission and distribution to reporting systems in order to catch reporting errors</dd>
+    </dl>
+    <h3>Technical Notes</h3>
+    <p>All code is written in 2015 specifically for this project. The back end that touches legacy systems is written in Grails/Groovy/Tomcat, everything else is JavaScript (NodeJS/ Express 4/ MongoDB 3). All front-end code uses HTML5 and JS/Angular.
+    <h4>Web Server/Frameworks</h4>
+     <p>The system on OpenShift is simplified for demo purposes and uses extracts to MongoDB from other databases (Postgres, SQL Server, Oracle, DB2) so only needs:</p>
+    <ul>
+        <li>Apache server for the front end</li>
+        <li>NodeJS/Express/MongoDB for back end (REST API)</li>
+    </ul>
+    <p>This was largely developed in Windows 8 locally. NodeJS, Tomcat, and MongoDB are on Red Hat Linux in the production environment.
+    <h4>Databases</h4>
+    <p>The data is stored in sevaral databases; Postgres (meter and light events), Oracle (assets and work), SQL Server (aggregated summaries), eDNA (real time data), and MongoDB (topology). </p>
+    <h4>Front-End Components</h4>
+    <ul>
+        <li>AngularJS: validation, resource, animation, ui.router, ui.bootstrap</li>
+        <li>Angular third-party contributions: spinkit, csv, sanitize.</li>
+        <li>Angular custom directives for D3 and right-click.</li>
+        <li>D3 for visualization</li>
+        <li>Leaflet for mapping</li>
+        <li>Bootstrap CSS</li>
+    </ul>
+</div>

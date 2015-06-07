@@ -9,14 +9,15 @@ app.service('DataModel', function($http, $q) {
         if (id === cacheId)
             return $q.when(cache);
         else{
-            return $http.get("http://" + window.location.hostname + ":3000/magog/" + id).then(
+            var httpStr = "http://" + window.location.hostname + ":8080/api/magog/" + id;
+            return $http.get(httpStr).then(
                 function (response) {
                     cache = response.data;
                     cacheId = id;
                     return cache;
                 },
                 function (data) {
-                    alert("problem with back-end http call");
+                    alert("problem with back-end http call to " + httpStr);
                 });
         };
     };

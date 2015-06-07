@@ -2,10 +2,11 @@ var app = angular.module('myApp', ['ui.bootstrap']);
 
 app.controller('hvtCtrl', function($scope, $http){
 	$scope.ajaxLoaded = false;
-	$http.get("http://localhost:8080/workRequest/dashboard")
+	$http.get("http://localhost:8080/api/hvt")
 	.success(function(data, status, headers, config) {
     	$scope.items = data.hvmodel;
-    	$scope.orders = data.orders;
+            console.log($scope.items);
+    	$scope.orders = '';
 		$scope.ajaxLoaded = true;
 
 		for (var i = 0; i < $scope.items.length; i++){
@@ -20,7 +21,6 @@ app.controller('hvtCtrl', function($scope, $http){
 		$scope.ajaxLoaded = false; 
 	});
 
-	
 	function matchTicket(item) {
 		for (var j = 0; j < $scope.orders.length; j++){
 			if ($scope.orders[j].equipId === item.ddb){
